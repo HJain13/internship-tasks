@@ -25,9 +25,6 @@ class App extends Component {
   }
 
   data = {
-    "template_type": "slot_picker",
-    "selection_color": "#000000",
-    "secondary_color": "#808080",
     "title": "Available Slots for Dr. Sumit",
     "available_slots": [
       {

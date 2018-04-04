@@ -17,6 +17,10 @@
   width: 66%;
 }
 
+.picker-container .picker-column .picker-item{
+  color: #808080;
+}
+
 .picker-container .picker-column .picker-item.picker-item-selected {
   color: #000;
 }
