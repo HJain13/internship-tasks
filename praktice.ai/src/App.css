@@ -24,3 +24,8 @@
 .has-no-slot .picker-container .picker-column .picker-item.picker-item-selected{
   color: red;
 }
+
+a {
+  cursor: pointer;
+  color: darkblue;
+}

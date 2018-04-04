@@ -108,10 +108,10 @@ class App extends Component {
   };    
 
   componentDidMount(){
-    let vg1 = {date:'Today'}, vg2 = {hour:'', slot:''}, og1 = {date:[]}, og2 = {hour:[], slot:[]};   
+    let vg1 = {date:'Today'}, vg2 = {hour:'8', slot:'08:10 AM'}, og1 = {date:[]}, og2 = {hour:[], slot:[]};   
     this.data.available_slots.forEach(function(slot, index){
       (slot.date_slots.length !== 0) ? og1.date.push(slot.date) : og1.date.push(<del>{slot.date}</del>)
-      slot.date_slots.forEach(function(hslot, index2){
+      slot.date_slots.forEach(function(hslot, index){
         if(index === 0) {
           vg2.hour = hslot.hour;
           vg2.slot = Object.keys(hslot.hour_slots)[0];
@@ -133,35 +133,34 @@ class App extends Component {
   change = () => {
     let og2 = {hour:[], slot:[]}, vg1 = this.state.valueGroups1, vg2 = this.state.valueGroups2;
     this.data.available_slots.forEach(function(slot, index){
-      console.log(vg1.date, slot.date)
       if(slot.date.indexOf(vg1.date) !== -1){
         console.log("ok");
         slot.date_slots.forEach(function(hslot, index){
           og2.hour.push(hslot.hour);
-          console.log(vg2);
-          hslot.hour_slots.forEach(function(slot){
-            if(hslot.hour === vg2.hour) {
+          if(hslot.hour === vg2.hour) {
+            hslot.hour_slots.forEach(function(slot){
               og2.slot.push(Object.keys(slot)[0]);
-            }
-          });
+            });
+          }
         });
       }
     });
     if(og2.hour[0]){
+      console.log(og2.hour[0]);
       this.setState({
         noHours: false,
-        valueGroups2: {"hour": og2.hour[0]},
         optionGroups2: og2
       })
+      console.log(this.state)
     } else {
+      console.log("okay");
       this.setState({
         noHours: true,
-        valueGroups2: {'hour': 'No Slots Available on This Day'},
         optionGroups2: {'hour': ['No Slots Available on This Day']}
       })
+      console.log(this.state)
     }
   };
-
 
   // Update the value in response to user picking event
   handleChange1 = (name, value) => {
@@ -178,8 +177,27 @@ class App extends Component {
         ...valueGroups2,
         [name]: value
       }
-    }));
+    }), this.change);
   };  
+
+  confirm = () => {
+    let vg1 = this.state.valueGroups1, vg2 = this.state.valueGroups2;
+    let slotId;
+    this.data.available_slots.forEach(function(slot, index){
+      if(slot.date.indexOf(vg1.date) !== -1){
+        slot.date_slots.forEach(function(hslot, index){
+          if(hslot.hour === vg2.hour) {
+            hslot.hour_slots.forEach(function(slot){
+              if(hslot.hour === vg2.hour) {
+                slotId = slot[Object.keys(slot)[0]];
+              }
+            });
+          }
+        });
+      }
+    });
+    alert("You have selected " + vg1.date + ' and your slot is '+ slotId);
+  }
   
   render() {
     const {optionGroups1, valueGroups1, optionGroups2, valueGroups2} = this.state;
@@ -204,6 +222,7 @@ class App extends Component {
             </div>
           </div>
         </div>
+        <a onClick={this.confirm}>Confirm Date</a>
       </div>
     );
   }
