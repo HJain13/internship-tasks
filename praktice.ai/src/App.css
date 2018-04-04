@@ -2,27 +2,25 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.container {
+  max-width: 512px;
+  margin: 0 auto;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.is-column-1by3{
+  display: inline-block;
+  width: 33%;
 }
 
-.App-title {
-  font-size: 1.5em;
+.is-column-2by3{
+  display: inline-block;
+  width: 66%;
 }
 
-.App-intro {
-  font-size: large;
+.picker-container .picker-column .picker-item.picker-item-selected {
+  color: #000;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.has-no-slot .picker-container .picker-column .picker-item.picker-item-selected{
+  color: red;
 }
