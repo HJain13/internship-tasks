@@ -7,18 +7,18 @@ class App extends Component {
     super(props);
     this.state = {
       valueGroups1: {
-        title: 'Mr.'
+        date: ''
       }, 
       optionGroups1: {
-        title: ['Mr.', 'Mrs.', 'Ms.', 'Dr.'],
+        date: [],
       },
       valueGroups2: {
-        firstName: 'Micheal',
-        secondName: 'Jordan'
+        hour: '',
+        slot: ''
       }, 
       optionGroups2: {
-        firstName: ['John', 'Micheal', 'Elizabeth'],
-        secondName: ['Lennon', 'Jackson', 'Jordan', 'Legend', 'Taylor']
+        hour: [],
+        slot: []
       },
       noHours: false
     };
